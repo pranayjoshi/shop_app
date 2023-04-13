@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:shop_app/models/product.dart';
+import 'package:shop_app/widgets/product_item.dart';
 
 class ProductOverviewScreen extends StatelessWidget {
-
   final List<Product> LoadedProducts = [
     Product(
       id: 'p1',
@@ -48,8 +48,13 @@ class ProductOverviewScreen extends StatelessWidget {
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(10),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 3/2, crossAxisSpacing: 10, mainAxisSpacing: 10),
-        itemBuilder: (ctx, i) => Container(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10),
+        itemBuilder: (ctx, i) => ProductItem(LoadedProducts[i].id,
+            LoadedProducts[i].title, LoadedProducts[i].imageUrl),
         itemCount: LoadedProducts.length,
       ),
     );
