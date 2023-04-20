@@ -10,7 +10,14 @@ enum FilterOptions {
   All
 }
 
-class ProductOverviewScreen extends StatelessWidget {
+class ProductOverviewScreen extends StatefulWidget {
+  @override
+  State<ProductOverviewScreen> createState() => _ProductOverviewScreenState();
+}
+
+class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
+
+  var _showFavonly = false;
   @override
   Widget build(BuildContext context) {
     // final productsContainer = Provider.of<Products>(context, listen: false);
@@ -32,15 +39,15 @@ class ProductOverviewScreen extends StatelessWidget {
             icon: Icon(Icons.more_vert),
             onSelected: (value) {
               if (value == FilterOptions.Favourites){
-
+                _showFavonly = true;
               } else {
-
+                _showFavonly = false;
               }
             },
           )
         ],
       ),
-      body: ProductsGrid(),
+      body: ProductsGrid(_showFavonly),
     );
   }
 }
