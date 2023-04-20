@@ -4,6 +4,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/widgets/products_grid.dart';
 
+enum FilterOptions {
+  Favourites,
+  All
+}
+
 class ProductOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,11 +20,11 @@ class ProductOverviewScreen extends StatelessWidget {
             itemBuilder: (_) => [
               PopupMenuItem(
                 child: Text("Only favourites"),
-                value: 0,
+                value: FilterOptions.Favourites,
               ),
               PopupMenuItem(
                 child: Text("Show All"),
-                value: 1,
+                value: FilterOptions.All,
               )
             ],
             icon: Icon(Icons.more_vert),
