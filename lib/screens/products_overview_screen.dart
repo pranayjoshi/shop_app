@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:shop_app/models/product.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/providers/product.dart';
 import 'package:shop_app/widgets/products_grid.dart';
 
 enum FilterOptions {
@@ -12,6 +13,7 @@ enum FilterOptions {
 class ProductOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final productsContainer = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("My Shop"),
@@ -32,7 +34,7 @@ class ProductOverviewScreen extends StatelessWidget {
               if (value == FilterOptions.Favourites){
 
               } else {
-                
+
               }
             },
           )
