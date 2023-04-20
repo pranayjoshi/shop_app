@@ -28,7 +28,13 @@ class ProductOverviewScreen extends StatelessWidget {
               )
             ],
             icon: Icon(Icons.more_vert),
-            onSelected: (value) => print(value),
+            onSelected: (value) {
+              if (value == FilterOptions.Favourites){
+
+              } else {
+                
+              }
+            },
           )
         ],
       ),
