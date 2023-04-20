@@ -13,7 +13,7 @@ enum FilterOptions {
 class ProductOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final productsContainer = Provider.of<Products>(context, listen: false);
+    // final productsContainer = Provider.of<Products>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text("My Shop"),
@@ -32,9 +32,9 @@ class ProductOverviewScreen extends StatelessWidget {
             icon: Icon(Icons.more_vert),
             onSelected: (value) {
               if (value == FilterOptions.Favourites){
-                productsContainer.showFavonly();
+
               } else {
-                productsContainer.showAll();
+
               }
             },
           )
