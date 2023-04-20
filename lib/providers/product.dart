@@ -52,7 +52,14 @@ class Products with ChangeNotifier {
 
   void showFavonly(){
     _showFavonly = true;
+    notifyListeners();
   }
+
+  void showAll(){
+    _showFavonly = false;
+    notifyListeners();
+  }
+
 
   void addProduct() {
     // _items.add(value);
