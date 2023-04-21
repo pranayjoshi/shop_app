@@ -38,11 +38,14 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             ],
             icon: Icon(Icons.more_vert),
             onSelected: (value) {
-              if (value == FilterOptions.Favourites){
+              setState(() {
+                if (value == FilterOptions.Favourites){
                 _showFavonly = true;
               } else {
                 _showFavonly = false;
               }
+              });
+              
             },
           )
         ],
