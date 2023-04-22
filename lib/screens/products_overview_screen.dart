@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/product.dart';
+import 'package:shop_app/widgets/badge.dart';
 import 'package:shop_app/widgets/products_grid.dart';
 
 import '../providers/cart.dart';
@@ -45,12 +46,10 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               });
             },
           ),
-          Consumer<Cart>(builder: (_, cartData, _d) => Badge(
-            child: IconButton(
+          Consumer<Cart>(builder: (_, cartData, ch) => Badge1(child: ch!, value: cartData.itemCount.toString(), ), child: IconButton(
               icon: Icon(Icons.shopping_cart),
               onPressed: () {},
-            ),
-          ))
+            ),)
         ],
       ),
       body: ProductsGrid(_showFavonly),
