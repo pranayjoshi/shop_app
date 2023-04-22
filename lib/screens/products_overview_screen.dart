@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/providers/product.dart';
 import 'package:shop_app/widgets/products_grid.dart';
 
+import '../providers/cart.dart';
+
 enum FilterOptions { Favourites, All }
 
 class ProductOverviewScreen extends StatefulWidget {
@@ -43,12 +45,12 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               });
             },
           ),
-          Badge(
+          Consumer<Cart>(builder: (_, cartData, _d) => Badge(
             child: IconButton(
               icon: Icon(Icons.shopping_cart),
               onPressed: () {},
             ),
-          )
+          ))
         ],
       ),
       body: ProductsGrid(_showFavonly),
