@@ -5,10 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/providers/product.dart';
 import 'package:shop_app/widgets/products_grid.dart';
 
-enum FilterOptions {
-  Favourites,
-  All
-}
+enum FilterOptions { Favourites, All }
 
 class ProductOverviewScreen extends StatefulWidget {
   @override
@@ -16,7 +13,6 @@ class ProductOverviewScreen extends StatefulWidget {
 }
 
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
-
   var _showFavonly = false;
   @override
   Widget build(BuildContext context) {
@@ -39,14 +35,19 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             icon: Icon(Icons.more_vert),
             onSelected: (value) {
               setState(() {
-                if (value == FilterOptions.Favourites){
-                _showFavonly = true;
-              } else {
-                _showFavonly = false;
-              }
+                if (value == FilterOptions.Favourites) {
+                  _showFavonly = true;
+                } else {
+                  _showFavonly = false;
+                }
               });
-              
             },
+          ),
+          Badge(
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {},
+            ),
           )
         ],
       ),
