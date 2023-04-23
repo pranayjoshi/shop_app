@@ -27,7 +27,9 @@ class Cart with ChangeNotifier {
 
   double get totalAmount {
     var total = 0.0;
-    _items.forEach((key, CartItem) { total += CartItem.price * CartItem.quantity; });
+    _items.forEach((key, CartItem) {
+      total += CartItem.price * CartItem.quantity;
+    });
     return total;
   }
 
@@ -41,21 +43,21 @@ class Cart with ChangeNotifier {
       _items.update(
         productId,
         (existingCartItem) => CartItem(
-              id: existingCartItem.id,
-              title: existingCartItem.title,
-              price: existingCartItem.price,
-              quantity: existingCartItem.quantity + 1,
-            ),
+          id: existingCartItem.id,
+          title: existingCartItem.title,
+          price: existingCartItem.price,
+          quantity: existingCartItem.quantity + 1,
+        ),
       );
     } else {
       _items.putIfAbsent(
         productId,
         () => CartItem(
-              id: DateTime.now().toString(),
-              title: title,
-              price: price,
-              quantity: 1,
-            ),
+          id: DateTime.now().toString(),
+          title: title,
+          price: price,
+          quantity: 1,
+        ),
       );
     }
     notifyListeners();
