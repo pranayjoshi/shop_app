@@ -16,4 +16,6 @@ class Product with ChangeNotifier{
     notifyListeners();
   }
 
+  void toggleFavoriteStatus() {}
+
 }
