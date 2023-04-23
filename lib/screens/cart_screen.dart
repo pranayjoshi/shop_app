@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/providers/cart.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(title: const Text("Your Cart")),
       body: Column(children: <Widget>[
@@ -16,7 +19,7 @@ class CartScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20)
               ),
               SizedBox(width: 10,),
-              Chip(label: Text(""))  
+              Chip(label: Text('\$${cart.toString()}'), backgroundColor: Theme.of(context).primaryColor,)  
             ],),
             ),
         )
