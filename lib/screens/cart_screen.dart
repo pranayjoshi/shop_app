@@ -16,12 +16,14 @@ class CartScreen extends StatelessWidget {
         Card(margin: EdgeInsets.all(15),
           child: Padding(
             padding: EdgeInsets.all(8),
-            child: Row(children: <Widget>[
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween ,children: <Widget>[
               Text("Total",
-                style: TextStyle(fontSize: 20)
+                style: TextStyle(fontSize: 20,)
               ),
               SizedBox(width: 10,),
-              Chip(label: Text('\$${cart.toString()}'), backgroundColor: Theme.of(context).primaryColor,)  
+              Spacer(),
+              Chip(label: Text('\$${cart.totalAmount}', style: TextStyle(color: Colors.white),), backgroundColor: Theme.of(context).primaryColor,),
+              OutlinedButton(onPressed: (){}, child: Text("ORDER NOW"))
             ],),
             ),
         )
