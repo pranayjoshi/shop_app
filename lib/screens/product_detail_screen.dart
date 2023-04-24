@@ -30,7 +30,16 @@ class ProductDetailScreen extends StatelessWidget {
           ),
           width: double.infinity,
           height: 300,
-        )
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          '\$${loadedProduct.price}',
+          style: TextStyle(color: Colors.grey, fontSize: 20),
+        ),
+        SizedBox(height: 10),
+        Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 10), child: Text(loadedProduct.description, textAlign: TextAlign.center,))
       ])),
     );
   }
