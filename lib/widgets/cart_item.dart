@@ -16,6 +16,9 @@ class CartItem extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
       child: ListTile(
         leading: CircleAvatar(child: Text('\$$price')),
+        title: Text(title),
+        subtitle: Text('Total: \$${price * quantity}'),
+        trailing: Text('$quantity x'),
       ),
     );
   }
