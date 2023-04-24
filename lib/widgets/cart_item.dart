@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:shop_app/providers/cart.dart';
 
 class CartItem extends StatelessWidget {
   final String id;
+  final String productId;
   final double price;
   final int quantity;
   final String title;
 
   CartItem(
     this.id,
+    this.productId,
     this.title,
     this.quantity,
     this.price,
@@ -30,6 +33,9 @@ class CartItem extends StatelessWidget {
         padding: EdgeInsets.only(right: 20),
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
       ),
+      onDismissed: (direction) {
+        Cart().removeItem(productId);
+      },
       direction: DismissDirection.endToStart,
       child: Card(
         margin: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
