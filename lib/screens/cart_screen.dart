@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart.dart' show Cart;
+import 'package:shop_app/providers/order.dart';
 import 'package:shop_app/widgets/cart_item.dart';
 
 class CartScreen extends StatelessWidget {
@@ -35,7 +36,10 @@ class CartScreen extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                OutlinedButton(onPressed: () {}, child: Text("ORDER NOW"))
+                OutlinedButton(onPressed: () {
+                  Provider.of<Orders>(context, listen: false).addItem(cart.items.values.toList(), cart.totalAmount);
+                  cart.clear();
+                }, child: Text("ORDER NOW"))
               ],
             ),
           ),
