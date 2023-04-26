@@ -69,7 +69,7 @@ class Cart with ChangeNotifier {
   }
 
   void removeSingleItem(String prodId){
-    if (_items.containsKey(prodId)){
+    if (!_items.containsKey(prodId)){
       return;
     }
     if (_items[prodId]!.quantity >1){
