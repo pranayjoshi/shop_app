@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
                   width: 10,
                 ),
                 OutlinedButton(onPressed: () {
-                  Provider.of<Orders>(context, listen: false).addItem(cart.items.values.toList(), cart.totalAmount);
+                  Provider.of<Orders>(context, listen: false).addOrder(cart.items.values.toList(), cart.totalAmount);
                   cart.clear();
                 }, child: Text("ORDER NOW"))
               ],
