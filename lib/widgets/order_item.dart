@@ -31,12 +31,27 @@ class _OrderItemState extends State<OrderItem> {
               icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
               onPressed: () {
                 setState(() {
-                  _expanded: !_expanded;
+                  _expanded:
+                  !_expanded;
                 });
               },
             ),
           ),
-          if (_expanded) Container(height: min(widget.order.products.length * 20.0 + 100, 180),)
+          if (_expanded)
+            Container(
+                height: min(widget.order.products.length * 20.0 + 100, 180),
+                child: ListView(
+                  children: widget.order.products.map(((e) => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(e.title),
+                            Text(
+                              '${e.quantity}x \$${e.price}',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.grey),
+                            )
+                          ]))) as List<Widget>,
+                ))
         ],
       ),
     );
