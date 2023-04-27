@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/product.dart';
+import 'package:shop_app/widgets/app_drawer.dart';
 import 'package:shop_app/widgets/user_product_item.dart';
 
 class UserProductScreen extends StatelessWidget {
@@ -16,6 +17,7 @@ class UserProductScreen extends StatelessWidget {
         title: Text("Your Product"),
         actions: <Widget>[IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
+      drawer: AppDrawer(),
       body: Padding(
         padding: EdgeInsets.all(8),
         child: ListView.builder(
