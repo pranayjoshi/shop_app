@@ -50,7 +50,7 @@ class CartItem extends StatelessWidget {
                           Navigator.of(context).pop(false);
                         },
                         child: Text("No")),
-                    ElevatedButton(
+                    TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(true);
                         },
