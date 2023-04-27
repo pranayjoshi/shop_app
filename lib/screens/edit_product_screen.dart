@@ -63,7 +63,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           style: BorderStyle.solid,
                           width: 1,
                           color: Colors.grey)),
-                  child: Container(),
+
+                  child: _imageUrlController.text.isEmpty ? Text("Enter a Url") : FittedBox(child: Image.network(_imageUrlController.text),),
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: "Image Url"),
