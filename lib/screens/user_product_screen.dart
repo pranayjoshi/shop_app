@@ -14,15 +14,15 @@ class UserProductScreen extends StatelessWidget {
     final productsData = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Product"),
+        title: Text("Your Products"),
         actions: <Widget>[IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
       drawer: AppDrawer(),
       body: Padding(
         padding: EdgeInsets.all(8),
         child: ListView.builder(
-          itemBuilder: (count, i) {
-            UserProductItem(
+          itemBuilder: (_, i) {
+            return UserProductItem(
                 productsData.items[i].title, productsData.items[i].imageUrl);
           },
           itemCount: productsData.items.length,
