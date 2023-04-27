@@ -54,6 +54,7 @@ class ProductItem extends StatelessWidget {
             ),
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text("Added item to the cart!"), action: SnackBarAction(label: "UNDO", onPressed: () {
                   cart.removeSingleItem(product.id);
