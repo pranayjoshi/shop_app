@@ -6,7 +6,7 @@ import 'package:shop_app/providers/product.dart';
 import 'package:shop_app/widgets/user_product_item.dart';
 
 class UserProductScreen extends StatelessWidget {
-  const UserProductScreen({super.key});
+  static const routeName = "/user_product";
 
   @override
   Widget build(BuildContext context) {
