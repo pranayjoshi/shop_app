@@ -107,6 +107,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_descriptionFocusNode);
                 },
+                validator:(value) {
+                  if (value!.isEmpty){
+                    return "Please provide a value.";
+                  }
+                  if (double.tryParse(value) == null){
+                    return "Please return a valid number.";
+                  }
+                  
+                  else {
+                    return "";
+                  }
+                },
                 onSaved: (value) {
                   _editedProduct = Product(
                     title: _editedProduct.title,
