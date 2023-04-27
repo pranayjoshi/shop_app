@@ -14,6 +14,10 @@ class UserProductItem extends StatelessWidget {
     return ListTile(
       title: Text(title),
       leading: CircleAvatar(backgroundImage: NetworkImage(imageUrl),),
+      trailing: Row(children: <Widget>[
+        IconButton(onPressed: () {}, icon: Icon(Icons.edit), color: Theme.of(context).primaryColor,),
+        IconButton(onPressed: (){}, icon: Icon(Icons.delete), color: Theme.of(context).colorScheme.error,)
+      ]),
     );
   }
 }
