@@ -189,6 +189,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       onFieldSubmitted: (_) {
                         _saveForm();
                       },
+                      validator:(value) {
+                        if (value!.isEmpty){
+                          return "Please provide a imageUrl.";
+                        }
+                        if (!value.startsWith("http") && value.startsWith("https")){
+                          return "Please enter a valid url";
+                        }
+                        if (!value.endsWith(".jpg") && value.endsWith(".png")){
+                          return "The url entered does not contain an image";
+                        }
+                        return null;
+                      },
                       onSaved: (value) {
                         _editedProduct = Product(
                           title: _editedProduct.title,
