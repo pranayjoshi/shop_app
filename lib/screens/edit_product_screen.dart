@@ -86,7 +86,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   if (value!.isEmpty){
                     return "Please provide a value.";
                   } else {
-                    return "";
+                    return null;
                   }
                 },
                 onSaved: (value) {
@@ -114,10 +114,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   if (double.tryParse(value) == null){
                     return "Please return a valid number.";
                   }
-                  
-                  else {
-                    return "";
+                  if (double.parse(value) == null){
+                    return "Please return a number > 0";
                   }
+                  return null;
                 },
                 onSaved: (value) {
                   _editedProduct = Product(
@@ -134,6 +134,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
                 focusNode: _descriptionFocusNode,
+                validator:(value) {
+                  if (value!.isEmpty){
+                    return "Please enter Description.";
+                  } 
+                  if (value.length < 10) {
+                    return "Should be atleast 10 characters.";
+                  }
+
+                  return null;
+                },
                 onSaved: (value) {
                   _editedProduct = Product(
                     title: _editedProduct.title,
