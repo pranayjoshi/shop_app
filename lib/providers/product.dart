@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 
-// var _showFavonly = false; 
+// var _showFavonly = false;
 class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
@@ -40,7 +40,7 @@ class Products with ChangeNotifier {
   ];
 
   List<Product> get favItems {
-      return _items.where((element) => element.isFavourite).toList();
+    return _items.where((element) => element.isFavourite).toList();
   }
 
   List<Product> get items {
@@ -64,9 +64,15 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
+  void addProduct(Product product) {
+    final newProd = Product(
+        id: DateTime.now().toString(),
+        title: product.title,
+        price: product.price,
+        description: product.description,
+        imageUrl: product.imageUrl);
 
-  void addProduct() {
-    // _items.add(value);
+    _items.add(newProd);
     notifyListeners();
   }
 }
