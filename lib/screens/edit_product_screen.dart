@@ -40,7 +40,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _updateImageUrl() {
-    if (!_imageUrlFocusNode.hasFocus) {
+    var value = _imageUrlController.text;
+    if ((!_imageUrlFocusNode.hasFocus)) {
+      if ((value.isEmpty) ||
+          (!value.startsWith("http") && value.startsWith("https")) ||
+          (!value.endsWith(".jpg") && value.endsWith(".png"))) {
+        return;
+      }
       setState(() {});
     }
   }
@@ -82,8 +88,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocusNode);
                 },
-                validator:(value) {
-                  if (value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return "Please provide a value.";
                   } else {
                     return null;
@@ -107,14 +113,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_descriptionFocusNode);
                 },
-                validator:(value) {
-                  if (value!.isEmpty){
+                validator: (value) {
+                  if ((value as String).isEmpty) {
+                    print("heelllo tom");
                     return "Please provide a value.";
                   }
-                  if (double.tryParse(value) == null){
+                  if (double.tryParse(value as String) == null) {
                     return "Please return a valid number.";
                   }
-                  if (double.parse(value) == null){
+                  if (double.parse(value as String) == null) {
                     return "Please return a number > 0";
                   }
                   return null;
@@ -122,7 +129,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onSaved: (value) {
                   _editedProduct = Product(
                     title: _editedProduct.title,
-                    price: double.parse(value!),
+                    price: double.parse(
+                        value as String == "" ? "0" : value as String),
                     description: _editedProduct.description,
                     imageUrl: _editedProduct.imageUrl,
                     id: "",
@@ -134,10 +142,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
                 focusNode: _descriptionFocusNode,
-                validator:(value) {
-                  if (value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return "Please enter Description.";
-                  } 
+                  }
                   if (value.length < 10) {
                     return "Should be atleast 10 characters.";
                   }
@@ -189,14 +197,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       onFieldSubmitted: (_) {
                         _saveForm();
                       },
-                      validator:(value) {
-                        if (value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return "Please provide a imageUrl.";
                         }
-                        if (!value.startsWith("http") && value.startsWith("https")){
+                        if (!value.startsWith("http") &&
+                            value.startsWith("https")) {
                           return "Please enter a valid url";
                         }
-                        if (!value.endsWith(".jpg") && value.endsWith(".png")){
+                        if (!value.endsWith(".jpg") && value.endsWith(".png")) {
                           return "The url entered does not contain an image";
                         }
                         return null;
