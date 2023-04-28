@@ -42,7 +42,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   void _updateImageUrl() {
     var value = _imageUrlController.text;
     if ((!_imageUrlFocusNode.hasFocus)) {
-      if ((value.isEmpty) ||
+      if (
           (!value.startsWith("http") && value.startsWith("https")) ||
           (!value.endsWith(".jpg") && value.endsWith(".png"))) {
         return;
