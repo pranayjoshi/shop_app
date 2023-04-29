@@ -26,6 +26,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
     imageUrl: '',
   );
 
+  var _initValues = {
+    'title': "",
+    'description': "",
+    'price':"",
+    'imageUrl':""
+  };
+
   @override
   void initState() {
     _imageUrlFocusNode.addListener(_updateImageUrl);
@@ -36,7 +43,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
   void didChangeDependencies() {
     if (_isInit){
       final productId = ModalRoute.of(context)!.settings.arguments as String;
-      Provider.of<Products>(context, listen: false).findById(productId);
+      _editedProduct = Provider.of<Products>(context, listen: false).findById(productId);
+      _initValues = {
+        'title': _editedProduct.title,
+        'description': _editedProduct.description,
+        'price': _editedProduct.price.toString(),
+        'imageUrl': _editedProduct.imageUrl
+      };
     }
     _isInit = false;
     super.didChangeDependencies();
