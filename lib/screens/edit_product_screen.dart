@@ -162,11 +162,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onSaved: (value) {
                   _editedProduct = Product(
                       title: _editedProduct.title,
-                      price: double.parse(value),
+                      price: double.parse(value!),
                       description: _editedProduct.description,
                       imageUrl: _editedProduct.imageUrl,
                       id: _editedProduct.id,
-                      isFavorite: _editedProduct.isFavorite);
+                      isFavourite: _editedProduct.isFavourite);
                 },
               ),
               TextFormField(
