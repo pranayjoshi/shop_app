@@ -123,19 +123,19 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   FocusScope.of(context).requestFocus(_priceFocusNode);
                 },
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return 'Please provide a value.';
                   }
                   return null;
                 },
                 onSaved: (value) {
                   _editedProduct = Product(
-                      title: value,
+                      title: value!,
                       price: _editedProduct.price,
                       description: _editedProduct.description,
                       imageUrl: _editedProduct.imageUrl,
                       id: _editedProduct.id,
-                      isFavorite: _editedProduct.isFavorite);
+                      isFavourite: _editedProduct.isFavourite);
                 },
               ),
               TextFormField(
