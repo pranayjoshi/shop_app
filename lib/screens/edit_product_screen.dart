@@ -176,7 +176,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 keyboardType: TextInputType.multiline,
                 focusNode: _descriptionFocusNode,
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return 'Please enter a description.';
                   }
                   if (value.length < 10) {
@@ -188,10 +188,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   _editedProduct = Product(
                     title: _editedProduct.title,
                     price: _editedProduct.price,
-                    description: value,
+                    description: value!,
                     imageUrl: _editedProduct.imageUrl,
                     id: _editedProduct.id,
-                    isFavorite: _editedProduct.isFavorite,
+                    isFavourite: _editedProduct.isFavourite,
                   );
                 },
               ),
@@ -248,9 +248,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           title: _editedProduct.title,
                           price: _editedProduct.price,
                           description: _editedProduct.description,
-                          imageUrl: value,
+                          imageUrl: value!,
                           id: _editedProduct.id,
-                          isFavorite: _editedProduct.isFavorite,
+                          isFavourite: _editedProduct.isFavourite,
                         );
                       },
                     ),
