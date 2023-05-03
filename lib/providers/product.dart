@@ -82,13 +82,13 @@ class Products with ChangeNotifier {
         'isFavourite': product.isFavourite,
       }),
     )
-        .then((value) {
+        .then((res) {
       final newProduct = Product(
         title: product.title,
         description: product.description,
         price: product.price,
         imageUrl: product.imageUrl,
-        id: DateTime.now().toString(),
+        id: json.decode(res.body)["name"],
       );
       _items.add(newProduct);
       // _items.insert(0, newProduct); // at the start of the list
