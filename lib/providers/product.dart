@@ -71,18 +71,18 @@ class Products with ChangeNotifier {
     final url = Uri.https(
         'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
         '/products.json');
-    await http
-        .post(
-      url,
-      body: json.encode({
-        'title': product.title,
-        'description': product.description,
-        'imageUrl': product.imageUrl,
-        'price': product.price,
-        'isFavourite': product.isFavourite,
-      }),
-    )
-        .then((res) {
+
+    try {
+      final res = await http.post(
+        url,
+        body: json.encode({
+          'title': product.title,
+          'description': product.description,
+          'imageUrl': product.imageUrl,
+          'price': product.price,
+          'isFavourite': product.isFavourite,
+        }),
+      );
       final newProduct = Product(
         title: product.title,
         description: product.description,
@@ -93,9 +93,9 @@ class Products with ChangeNotifier {
       _items.add(newProduct);
       // _items.insert(0, newProduct); // at the start of the list
       notifyListeners();
-    }).catchError((err){
+    } catch (err) {
       throw err;
-    });
+    }
   }
 
   void updateProduct(String id, Product newProduct) {
