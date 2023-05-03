@@ -108,7 +108,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
             builder: (ctx) {
               return AlertDialog(
                   title: Text("An error occured!"),
-                  content: Text(err.toString()));
+                  content: Text("Something went Wrong!"),
+                  actions: <Widget>[
+                    ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Okay"))
+                  ],);
             });
       }).then((_) {
         setState(() {
