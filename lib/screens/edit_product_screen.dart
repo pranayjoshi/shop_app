@@ -87,13 +87,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
     if (!isValid) {
       return;
     }
+    print('wdawdadccc');
     _form.currentState!.save();
-    if (_editedProduct.id != null) {
+    if (_editedProduct.id != "") {
+      print("wdadawdadawdawdad");
       Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);
     } else {
+      print("wdadawd");
       Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
     }
+    print("wdd");
     Navigator.of(context).pop();
   }
 

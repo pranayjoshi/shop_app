@@ -68,7 +68,7 @@ class Products with ChangeNotifier {
   // }
 
   void addProduct(Product product) {
-    final url = Uri.https('flutter-update.firebaseio.com', '/products.json');
+    final url = Uri.https('flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app', '/products.json');
     http.post(url, body: json.encode({
       'title': product.title,
       'description': product.description,
