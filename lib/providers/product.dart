@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; 
 
 import '../models/product.dart';
 
-import 'package:http/http.dart' as http;
-
-// var _showFavonly = false;
 class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
@@ -42,41 +40,42 @@ class Products with ChangeNotifier {
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
   ];
-
-  List<Product> get favItems {
-    return _items.where((element) => element.isFavourite).toList();
-  }
+  // var _showFavoritesOnly = false;
 
   List<Product> get items {
-    // if (_showFavonly){
-    //   return _items.where((element) => element.isFavourite).toList();
+    // if (_showFavoritesOnly) {
+    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
     // }
     return [..._items];
+  }
+
+  List<Product> get favoriteItems {
+    return _items.where((prodItem) => prodItem.isFavourite).toList();
   }
 
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  // void showFavonly(){
-  //   _showFavonly = true;
+  // void showFavoritesOnly() {
+  //   _showFavoritesOnly = true;
   //   notifyListeners();
   // }
 
-  // void showAll(){
-  //   _showFavonly = false;
+  // void showAll() {
+  //   _showFavoritesOnly = false;
   //   notifyListeners();
   // }
 
   void addProduct(Product product) {
-    const url = 'https://flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app/';
-    http.post(url as Uri, body: json.encode({
+    final url = Uri.https('flutter-update.firebaseio.com', '/products.json');
+    http.post(url, body: json.encode({
       'title': product.title,
-      'description':product.description,
+      'description': product.description,
       'imageUrl': product.imageUrl,
       'price': product.price,
-      'isFavourite': product.isFavourite
-    }));
+      'isFavourite': product.isFavourite,
+    }),);
     final newProduct = Product(
       title: product.title,
       description: product.description,

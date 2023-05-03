@@ -39,6 +39,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   @override
+   @override
   void didChangeDependencies() {
     if (_isInit) {
       var productId = "";
@@ -62,6 +63,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     _isInit = false;
     super.didChangeDependencies();
   }
+
 
   @override
   void dispose() {
@@ -236,14 +238,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       },
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Please provide a imageUrl.";
+                          return 'Please enter an image URL.';
                         }
-                        if (!value.startsWith("http") &&
-                            value.startsWith("https")) {
-                          return "Please enter a valid url";
+                        if (!value.startsWith('http') &&
+                            !value.startsWith('https')) {
+                          return 'Please enter a valid URL.';
                         }
-                        if (!value.endsWith(".jpg") && value.endsWith(".png")) {
-                          return "The url entered does not contain an image";
+                        if (!value.endsWith('.png') &&
+                            !value.endsWith('.jpg') &&
+                            !value.endsWith('.jpeg')) {
+                          return 'Please enter a valid image URL.';
                         }
                         return null;
                       },
