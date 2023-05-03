@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 
+import 'package:http/http.dart' as http;
+
 // var _showFavonly = false;
 class Products with ChangeNotifier {
   List<Product> _items = [
@@ -65,6 +67,7 @@ class Products with ChangeNotifier {
   // }
 
   void addProduct(Product product) {
+    const url = 'https://flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app/';
     final newProduct = Product(
       title: product.title,
       description: product.description,
