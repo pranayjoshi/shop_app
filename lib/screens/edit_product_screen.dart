@@ -83,7 +83,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
   }
 
-  void _saveForm() {
+  Future<void> _saveForm() async{
     final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
@@ -100,10 +100,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
       });
       Navigator.of(context).pop();
     } else {
-      Provider.of<Products>(context, listen: false)
-          .addProduct(_editedProduct)
-          .catchError((err) {
-      return showDialog(
+      try{
+        await Provider.of<Products>(context, listen: false)
+          .addProduct(_editedProduct);
+      }
+      catch(err) {
+        showDialog(
             context: context,
             builder: (ctx) {
               return AlertDialog(
@@ -113,12 +115,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Okay"))
                   ],);
             });
-      }).then((_) {
         setState(() {
           _isLoading = false;
         });
         Navigator.of(context).pop();
-      });
+      };
     }
   }
 
