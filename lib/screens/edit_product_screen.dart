@@ -123,7 +123,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
           ),
         ],
       ),
-      body: Padding(
+      body: _isLoading ? Center(child: CircularProgressIndicator(),): Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _form,
