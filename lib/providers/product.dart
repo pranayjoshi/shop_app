@@ -67,11 +67,11 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void addProduct(Product product) {
+  Future<void> addProduct(Product product) {
     final url = Uri.https(
         'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
         '/products.json');
-    http
+    return http
         .post(
       url,
       body: json.encode({
