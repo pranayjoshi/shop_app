@@ -20,6 +20,11 @@ class Product with ChangeNotifier {
       required this.imageUrl,
       this.isFavourite = false});
 
+  void setFavStat(bool oldStatus){
+    isFavourite = oldStatus;
+    notifyListeners();
+  }
+
   Future<void> toggleFavourite() async {
     final url = Uri.https(
         'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -31,8 +36,11 @@ class Product with ChangeNotifier {
     try {
       final res = await http.patch(url,
           body: json.encode({'isFavourite': isFavourite}));
+      if (res.statusCode >=400){
+        setFavStat(oldStatus);
+      }
     } catch (err) {
-      isFavourite = oldStatus;
+      setFavStat(oldStatus);
     }
   }
 }
