@@ -71,19 +71,21 @@ class Products with ChangeNotifier {
     final url = Uri.https(
         'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
         '/products.json');
-    try{
+    try {
       final res = await http.get(url);
       final extractedData = json.decode(res.body) as Map<String, dynamic>;
       final List<Product> loadedList = [];
       extractedData.forEach((key, data) {
-        loadedList.add(
-          Product(id: key, title: data['title'], price: data['price'], description: data['description'], imageUrl: data['imageUrl'])
-        );
+        loadedList.add(Product(
+            id: key,
+            title: data['title'],
+            price: data['price'],
+            description: data['description'],
+            imageUrl: data['imageUrl'],
+            isFavourite: data['isFavourite']));
       });
-
     } catch (err) {
       throw err;
-
     }
   }
 
