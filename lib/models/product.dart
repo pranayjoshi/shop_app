@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http ;
+import 'package:http/http.dart' as http;
 
-class Product with ChangeNotifier{
+class Product with ChangeNotifier {
   final String id;
   final String title;
   final double price;
@@ -12,22 +12,27 @@ class Product with ChangeNotifier{
   final String imageUrl;
   bool isFavourite;
 
-  Product({required this.id, required this.title, required this.price, required this.description, required this.imageUrl, this.isFavourite = false});
+  Product(
+      {required this.id,
+      required this.title,
+      required this.price,
+      required this.description,
+      required this.imageUrl,
+      this.isFavourite = false});
 
-  Future<void> toggleFavourite() async{
+  Future<void> toggleFavourite() async {
     final url = Uri.https(
-      'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
-      '/products/${id}.json');
+        'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
+        '/products/${id}.json');
 
-    var extfavind = isFavourite;
+    var oldStatus = isFavourite;
     isFavourite = !isFavourite;
     notifyListeners();
     try {
-      final res = await http.patch(url,body: json.encode({'isFavourite': isFavourite}));
-    } catch(err){
-      
+      final res = await http.patch(url,
+          body: json.encode({'isFavourite': isFavourite}));
+    } catch (err) {
+      isFavourite = oldStatus;
     }
-    
   }
-
 }
