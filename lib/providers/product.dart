@@ -72,8 +72,8 @@ class Products with ChangeNotifier {
         'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
         '/products.json');
     try{
-      final res = http.get(url);
-      print(res);
+      final res = await http.get(url);
+      print(json.decode(res.body));
     } catch (err) {
       throw err;
 
