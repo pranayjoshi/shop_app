@@ -84,6 +84,8 @@ class Products with ChangeNotifier {
             imageUrl: data['imageUrl'],
             isFavourite: data['isFavourite']));
       });
+      _items = loadedList;
+      notifyListeners();
     } catch (err) {
       throw err;
     }
