@@ -150,14 +150,15 @@ class Products with ChangeNotifier {
 
     var existingProdIndex = _items.indexWhere((prod) => prod.id == id);
     Product? existingProd = _items[existingProdIndex];
+    _items.removeAt(existingProdIndex);
+    notifyListeners();
     final res = await http.delete(url);
     if (res.statusCode >= 400){
+      _items.insert(existingProdIndex, existingProd);
+      notifyListeners();
         throw HttpException("Could not delete Product!");
       }
     existingProd = null;
-      
-    _items.insert(existingProdIndex, existingProd!);
-    _items.removeAt(existingProdIndex);
-    notifyListeners();
+    
   }
 }
