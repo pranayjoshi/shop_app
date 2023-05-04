@@ -148,9 +148,11 @@ class Products with ChangeNotifier {
       '/products/${id}.json');
 
     var existingProdIndex = _items.indexWhere((prod) => prod.id == id);
-    var existingProd = _items[existingProdIndex];
+    Product? existingProd = _items[existingProdIndex];
+    http.delete(url).then((value) =>  existingProd = null ).catchError((_){
+      _items.insert(existingProdIndex, existingProd!);
+    });
     _items.removeAt(existingProdIndex);
-    http.delete(url);
     notifyListeners();
   }
 }
