@@ -73,7 +73,7 @@ class Products with ChangeNotifier {
         '/products.json');
     try{
       final res = http.get(url);
-      
+      print(res);
     } catch (err) {
       throw err;
 
