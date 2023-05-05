@@ -72,7 +72,7 @@ class _OrderButtonState extends State<OrderButton> {
   var _isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: widget.cart.totalAmount <= 0 ? null :() async{
+    return OutlinedButton(onPressed: (widget.cart.totalAmount <= 0 || _isLoading) ? null :() async{
       setState(() {
         _isLoading = true;
       });

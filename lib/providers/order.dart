@@ -29,7 +29,7 @@ class Orders with ChangeNotifier {
   Future<void> addOrder(List<CartItem> cartProducts, double total) async{
     final url = Uri.https(
       'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
-      '/products.json');
+      '/orders.json');
 
     final timestamp = DateTime.now();
 
@@ -41,7 +41,7 @@ class Orders with ChangeNotifier {
         'title': e.title,
         'quantity': e.quantity,
         'price':e.price,
-      })
+      }).toList()
     }));
     _orders.insert(
       0,
