@@ -30,7 +30,7 @@ class Orders with ChangeNotifier {
   Future<void> fetchAndSetProducts() async {
     final url = Uri.https(
         'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
-        '/products.json');
+        '/orders.json');
     try {
       final res = await http.get(url);
       final extractedData = json.decode(res.body) as Map<String, dynamic>;
