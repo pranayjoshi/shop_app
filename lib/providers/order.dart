@@ -26,7 +26,7 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
-  void addOrder(List<CartItem> cartProducts, double total) async{
+  Future<void> addOrder(List<CartItem> cartProducts, double total) async{
     final url = Uri.https(
       'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
       '/products.json');
