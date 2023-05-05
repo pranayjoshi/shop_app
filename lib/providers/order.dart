@@ -25,6 +25,28 @@ class Orders with ChangeNotifier {
   List<OrderItem> get orders {
     return [..._orders];
   }
+  
+  
+  Future<void> fetchAndSetProducts() async {
+    final url = Uri.https(
+        'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
+        '/products.json');
+    try {
+      final res = await http.get(url);
+      final extractedData = json.decode(res.body) as Map<String, dynamic>;
+      final List<OrderItem> loadedList = [];
+      extractedData.forEach((key, data) {
+        loadedList.add(OrderItem(
+            id: key,
+            amount: data['title'],
+            products: data['price'],
+            dateTime: data['description']));});
+      _orders = loadedList;
+      notifyListeners();
+    } catch (err) {
+      throw err;
+    }
+  }
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async{
     final url = Uri.https(
