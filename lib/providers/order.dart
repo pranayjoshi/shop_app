@@ -33,7 +33,7 @@ class Orders with ChangeNotifier {
 
     final timestamp = DateTime.now();
 
-    http.post(url, body: json.encode({
+    final res = await http.post(url, body: json.encode({
       'amount': total,
       'dateTime': timestamp.toIso8601String(),
       'prodcus': cartProducts.map((e) =>{
@@ -46,7 +46,7 @@ class Orders with ChangeNotifier {
     _orders.insert(
       0,
       OrderItem(
-        id: DateTime.now().toString(),
+        id: json.decode(res.body)["name"],
         amount: total,
         dateTime: timestamp,
         products: cartProducts,
