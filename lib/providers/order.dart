@@ -25,8 +25,7 @@ class Orders with ChangeNotifier {
   List<OrderItem> get orders {
     return [..._orders];
   }
-  
-  
+
   Future<void> fetchAndSetProducts() async {
     final url = Uri.https(
         'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -39,8 +38,15 @@ class Orders with ChangeNotifier {
         loadedList.add(OrderItem(
             id: key,
             amount: data['title'],
-            products: data['price'],
-            dateTime: data['description']));});
+            products: (data['products'] as List<dynamic>)
+                .map((e) => CartItem(
+                    id: e["id"],
+                    title: e["title"],
+                    quantity: e["quantity"],
+                    price: e["price"]))
+                .toList(),
+            dateTime: DateTime.parse(data["dateTime"])));
+      });
       _orders = loadedList;
       notifyListeners();
     } catch (err) {
@@ -48,23 +54,26 @@ class Orders with ChangeNotifier {
     }
   }
 
-  Future<void> addOrder(List<CartItem> cartProducts, double total) async{
+  Future<void> addOrder(List<CartItem> cartProducts, double total) async {
     final url = Uri.https(
-      'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
-      '/orders.json');
+        'flutter-test1-e3bd1-default-rtdb.asia-southeast1.firebasedatabase.app',
+        '/orders.json');
 
     final timestamp = DateTime.now();
 
-    final res = await http.post(url, body: json.encode({
-      'amount': total,
-      'dateTime': timestamp.toIso8601String(),
-      'prodcus': cartProducts.map((e) =>{
-        'id': e.id,
-        'title': e.title,
-        'quantity': e.quantity,
-        'price':e.price,
-      }).toList()
-    }));
+    final res = await http.post(url,
+        body: json.encode({
+          'amount': total,
+          'dateTime': timestamp.toIso8601String(),
+          'prodcus': cartProducts
+              .map((e) => {
+                    'id': e.id,
+                    'title': e.title,
+                    'quantity': e.quantity,
+                    'price': e.price,
+                  })
+              .toList()
+        }));
     _orders.insert(
       0,
       OrderItem(
