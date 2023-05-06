@@ -34,6 +34,9 @@ class Orders with ChangeNotifier {
       final res = await http.get(url);
       final extractedData = json.decode(res.body) as Map<String, dynamic>;
       final List<OrderItem> loadedList = [];
+      if (extractedData == null){
+        return;
+      }
       extractedData.forEach((key, data) {
         loadedList.add(OrderItem(
             id: key,
@@ -65,7 +68,7 @@ class Orders with ChangeNotifier {
         body: json.encode({
           'amount': total,
           'dateTime': timestamp.toIso8601String(),
-          'prodcus': cartProducts
+          'products': cartProducts
               .map((e) => {
                     'id': e.id,
                     'title': e.title,
