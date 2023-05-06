@@ -32,15 +32,17 @@ class Orders with ChangeNotifier {
         '/orders.json');
     try {
       final res = await http.get(url);
-      final extractedData = json.decode(res.body) as Map<String, dynamic>;
+      var extractedData =  json.decode(res.body);
       final List<OrderItem> loadedList = [];
       if (extractedData == null){
         return;
+      } else {
+        extractedData = json.decode(res.body) as Map<String, dynamic>;
       }
       extractedData.forEach((key, data) {
         loadedList.add(OrderItem(
             id: key,
-            amount: data['title'],
+            amount: data['amount'],
             products: (data['products'] as List<dynamic>)
                 .map((e) => CartItem(
                     id: e["id"],
