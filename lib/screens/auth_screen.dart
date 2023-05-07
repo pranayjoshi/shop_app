@@ -48,7 +48,7 @@ class AuthScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.deepOrange.shade900,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             blurRadius: 8,
                             color: Colors.black26,
@@ -56,13 +56,12 @@ class AuthScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      child: Text(
+                      child: const Text(
                         'MyShop',
                         style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Colors.white,
                           fontSize: 50,
-                          fontFamily: 'Anton',
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -218,7 +217,9 @@ class _AuthCardState extends State<AuthCard> {
                   style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    onPrimary: Theme.of(context).primaryColor,
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    
                   ),
                   
                 ),
